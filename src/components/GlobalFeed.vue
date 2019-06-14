@@ -1,10 +1,10 @@
 <template>
   <div>
     <ArticlePreview v-for="article in articles"
-      :key="article.id"
+      :key="article.slug"
       :author="article.author"
       :date="article.date"
-      :heart="article.heart"
+      :favoritesCount="article.favoritesCount"
       :title="article.title"
       :description="article.description"
       />
@@ -13,6 +13,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import Axios from "axios";
 import ArticlePreview from "@/components/ArticlePreview.vue";
 
 @Component({
@@ -21,25 +22,13 @@ import ArticlePreview from "@/components/ArticlePreview.vue";
   },
 })
 export default class GlobalFeed extends Vue {
-  articles = [
-    {
-      id: 2,
-      author: "Eric Simons",
-      date: "January 20th",
-      profileImage: "http://i.imgur.com/Qr71crq.jpg",
-      heart: "29",
-      title: "How to build webapps that scale",
-      description: "This is the description for the post.",
-    },
-    {
-      id: 1,
-      author: "Eric Simons",
-      date: "January 15th",
-      profileImage: "http://i.imgur.com/Qr71crq.jpg",
-      heart: "123",
-      title: "My first post",
-      description: "This is the description for the post.",
-    },
-  ]
+  articles = []
+
+  mounted() {
+    Axios.get("https://conduit.productionready.io/api/articles")
+      .then(response => {
+        this.articles = response.data.articles;
+      })
+  }
 }
 </script>
