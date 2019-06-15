@@ -13,11 +13,23 @@ class ConduitBackendApi {
   }
 
   public getGlobalFeed(): Response<apiType.ArticleListResponse> {
-    return Axios.get(this.basePath + '/articles');
+    return this.get('articles');
   }
 
   public getTag(): Response<apiType.TagListResponse> {
-    return Axios.get(this.basePath + '/tags');
+    return this.get('tags');
+  }
+
+  public getArticle(slug: string): Response<apiType.ArticleResponse> {
+    return this.get('articles/' + slug);
+  }
+
+  public getComments(slug: string): Response<apiType.CommentListResponse> {
+    return this.get('articles/' + slug + '/comments');
+  }
+
+  private get(uri: string): Response<any> {
+    return Axios.get(this.basePath + uri);
   }
 }
 

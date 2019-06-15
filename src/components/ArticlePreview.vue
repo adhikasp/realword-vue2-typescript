@@ -6,7 +6,7 @@
       </a>
       <div class="info">
         <a href class="author">{{author.username}}</a>
-        <span class="date">{{date}}</span>
+        <span class="date">{{publishDate}}</span>
       </div>
       <button class="btn btn-outline-primary btn-sm pull-xs-right">
         <i class="ion-heart"></i> {{favoritesCount}}
@@ -21,7 +21,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { toHumanDate } from "@/utils/dateHelper";
 
 @Component
 export default class ArticlePreview extends Vue {
@@ -36,5 +37,9 @@ export default class ArticlePreview extends Vue {
   private title!: string;
   @Prop()
   private description!: string;
+
+  get publishDate() {
+    return toHumanDate(this.date);
+  }
 }
 </script>

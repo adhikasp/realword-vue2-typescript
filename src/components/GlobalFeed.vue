@@ -12,10 +12,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import ConduitApi from "@/utils/api";
-import { Article } from "@/utils/apiDataType";
-import ArticlePreview from "@/components/ArticlePreview.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import ConduitApi from '@/utils/api';
+import { Article } from '@/utils/apiDataType';
+import ArticlePreview from '@/components/ArticlePreview.vue';
 
 @Component({
   components: {
@@ -23,13 +23,13 @@ import ArticlePreview from "@/components/ArticlePreview.vue";
   },
 })
 export default class GlobalFeed extends Vue {
-  articles: Article[] = []
+  private articles: Article[] = [];
 
-  mounted() {
+  public mounted() {
     ConduitApi.getGlobalFeed()
-      .then(response => {
+      .then((response) => {
         this.articles = response.data.articles;
-      })
+      });
   }
 }
 </script>

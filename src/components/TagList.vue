@@ -16,12 +16,12 @@ import { Tag } from '@/utils/apiDataType';
 
 @Component
 export default class TagList extends Vue {
-  tags:Tag[]  = []
+  private tags: Tag[]  = [];
 
-  mounted() {
+  public mounted() {
     ConduitApi.getTag()
-      .then(response => {
-        this.tags = response.data.tags
+      .then((response) => {
+        this.tags = response.data.tags;
       });
   }
 }

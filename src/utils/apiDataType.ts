@@ -1,3 +1,7 @@
+export interface ConduitBaseResponse {
+  [key: string]: any;
+}
+
 export type Tag = string;
 
 export interface Author {
@@ -20,10 +24,27 @@ export interface Article {
   author: Author;
 }
 
-export interface TagListResponse {
+export interface Comment {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  body: string;
+  author: Author;
+}
+
+export interface TagListResponse extends ConduitBaseResponse {
   tags: Tag[];
 }
 
-export interface ArticleListResponse {
+export interface ArticleResponse extends ConduitBaseResponse {
+  article: Article;
+}
+
+export interface ArticleListResponse extends ConduitBaseResponse {
   articles: Article[];
+}
+
+
+export interface CommentListResponse extends ConduitBaseResponse {
+  comments: Comment[];
 }
