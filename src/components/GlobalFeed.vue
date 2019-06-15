@@ -13,7 +13,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Axios from "axios";
+import ConduitApi from "@/utils/api";
+import { Article } from "@/utils/apiDataType";
 import ArticlePreview from "@/components/ArticlePreview.vue";
 
 @Component({
@@ -22,10 +23,10 @@ import ArticlePreview from "@/components/ArticlePreview.vue";
   },
 })
 export default class GlobalFeed extends Vue {
-  articles = []
+  articles: Article[] = []
 
   mounted() {
-    Axios.get("https://conduit.productionready.io/api/articles")
+    ConduitApi.getGlobalFeed()
       .then(response => {
         this.articles = response.data.articles;
       })

@@ -27,11 +27,7 @@
         <div class="col-md-3">
           <div class="sidebar">
             <p>Popular Tags</p>
-
-            <div class="tag-list">
-              <a href="" class="tag-pill tag-default">programming</a>
-              <a href="" class="tag-pill tag-default">javascript</a>
-            </div>
+            <TagList />
           </div>
         </div>
       </div>
@@ -42,11 +38,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import GlobalFeed from '@/components/GlobalFeed.vue';
+import TagList from '@/components/TagList.vue';
 
 @Component({
   components: {
     GlobalFeed,
-  }
+    TagList,
+  },
 })
 export default class Home extends Vue {}
 </script>
