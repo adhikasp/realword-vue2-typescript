@@ -37,8 +37,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import GlobalFeed from '@/components/GlobalFeed.vue';
-import TagList from '@/components/TagList.vue';
+import GlobalFeed from '@/components/home/GlobalFeed.vue';
+import TagList from '@/components/home/TagList.vue';
 
 @Component({
   components: {

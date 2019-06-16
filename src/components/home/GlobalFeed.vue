@@ -15,7 +15,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import ConduitApi from '@/utils/api';
 import { Article } from '@/utils/apiDataType';
-import ArticlePreview from '@/components/ArticlePreview.vue';
+import ArticlePreview from '@/components/article/ArticlePreview.vue';
 
 @Component({
   components: {
