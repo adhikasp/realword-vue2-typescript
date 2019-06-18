@@ -1,45 +1,38 @@
 <template>
   <div class="article-preview">
     <div class="article-meta">
-      <a href="profile.html">
-        <img :src="author.image">
-      </a>
+      <router-link :to="{ name: 'article', params: { slug: this.article.author.username }}">
+        <img :src="this.article.author.image" alt="Writer profile picture">
+      </router-link>
       <div class="info">
-        <a href class="author">{{author.username}}</a>
-        <span class="date">{{publishDate}}</span>
+        <a href class="author">{{ this.article.author.username }}</a>
+        <span class="date">{{ publishDate }}</span>
       </div>
       <button class="btn btn-outline-primary btn-sm pull-xs-right">
-        <i class="ion-heart"></i> {{favoritesCount}}
+        <i class="ion-heart"></i> {{ this.article.favoritesCount }}
       </button>
     </div>
-    <a href class="preview-link">
-      <h1>{{title}}</h1>
-      <p>{{description}}</p>
+    <router-link :to="{ name: 'article', params: { slug: this.article.slug }}">
+      <h1>{{ this.article.title }}</h1>
+      <p>{{ this.article.description }}</p>
       <span>Read more...</span>
-    </a>
+    </router-link>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { toHumanDate } from "@/utils/dateHelper";
+import { Article } from "@/utils/apiDataType";
 
 @Component
 export default class ArticlePreview extends Vue {
 
   @Prop()
-  private author!: object;
-  @Prop()
-  private date!: string;
-  @Prop()
-  private favoritesCount!: number;
-  @Prop()
-  private title!: string;
-  @Prop()
-  private description!: string;
+  private article!: Article;
 
   get publishDate() {
-    return toHumanDate(this.date);
+    return toHumanDate(this.article.createdAt);
   }
 }
 </script>

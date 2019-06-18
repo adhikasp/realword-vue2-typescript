@@ -11,6 +11,9 @@ export interface Author {
   following: boolean;
 }
 
+export interface User extends Author {
+}
+
 export interface Article {
   slug: string;
   title: string;
@@ -32,6 +35,10 @@ export interface Comment {
   author: Author;
 }
 
+export interface ProfileResponse extends ConduitBaseResponse {
+  profile: User;
+}
+
 export interface TagListResponse extends ConduitBaseResponse {
   tags: Tag[];
 }
@@ -44,7 +51,11 @@ export interface ArticleListResponse extends ConduitBaseResponse {
   articles: Article[];
 }
 
-
 export interface CommentListResponse extends ConduitBaseResponse {
   comments: Comment[];
+}
+
+export interface UserAuthenticationRequest extends ConduitBaseResponse {
+  email: string;
+  password: string;
 }

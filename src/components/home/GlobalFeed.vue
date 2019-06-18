@@ -2,11 +2,7 @@
   <div>
     <ArticlePreview v-for="article in articles"
       :key="article.slug"
-      :author="article.author"
-      :date="article.date"
-      :favoritesCount="article.favoritesCount"
-      :title="article.title"
-      :description="article.description"
+      :article="article"
       />
   </div>
 </template>
